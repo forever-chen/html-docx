@@ -63,17 +63,18 @@
 
 <body>
   <p>Enter/paste your document here:</p>
-  <!--[if supportFields]>
-    <span style='mso-element:field-begin'></span>
-    <span style='mso-spacerun:yes'> </span>
-    TOC \o "1-1" \h \z \u \t "Title 7;1"
-    <span style='mso-element:field-separator'></span>
-    <span style='mso-no-proof:yes'>
-        Table of content - Please select all using CTRL+T and press F9 to update all fields.
-    </span>
-    <span style='mso-element:field-end'></span>
-<![endif]-->
   <div id="content" cols="60" rows="10">
+    <!-- 页眉部分，text值为left/center/right,指示页眉靠左中右 -->
+    <div id="page-header" text='left'>我的新世界</div>
+    <!-- 首页的内容即是该标签的内容，首页相同则equal为true，否则为false -->
+    <div id="first-page"><div style='text-align: center;'>dfsdfsdf</div></div>  
+    <!-- 如果需要目录则加改标签，如果不要则不需要 -->
+    <div id="page-content"></div>
+    <!-- 如果需要换行则在换行的位置添加该标签，word会自动跳转到新的页面 -->
+    <span>22222222222222</span>
+    <div class="change-line"></div>
+    <!-- 页眉部分，text值为left/center/right,指示页眉靠左中右,页脚部分只显示页码 -->
+    <div id="page-footer"></div>
     <h1>第一层</h1>
     <p>111111111We all live in a yellow submarine, yellow submarine, yellow submarine, yellow submarine</p>
     <h2>第二层</h2>
@@ -82,6 +83,7 @@
     <h3>第三层</h3>
     <div id="main"></div>
     <div id="main1"></div>
+    <div class="change-line"></div>
     <div class="list">
       <div class="page">1</div>
       <div class="page">2</div>

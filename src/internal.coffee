@@ -42,7 +42,8 @@ module.exports =
 		zip.folder('docProps').file 'app.xml',  fs.readFileSync __dirname + '/templateFile/docProps/app.xml'
 							.file 'core.xml',  fs.readFileSync __dirname + '/templateFile/docProps/core.xml'
 		zip.folder('word').file 'document.xml',  @renderDocumentFile documentOptions
-						  .file 'afchunk.mht', utils.getMHTdocument htmlSource
+						  .file 'afchunk.mht', utils.getMHTdocument htmlSource[0]
+						  .file 'afchunk1.mht',  utils.getMHTdocument htmlSource[1]
 						  .file 'endnotes.xml', fs.readFileSync __dirname + '/templateFile/word/endnotes.xml'
 						  .file 'fontTable.xml', fs.readFileSync __dirname + '/templateFile/word/fontTable.xml'
 						  .file 'footer1.xml', fs.readFileSync __dirname + '/templateFile/word/footer1.xml'
@@ -59,3 +60,5 @@ module.exports =
 						  .file 'styles.xml', fs.readFileSync __dirname + '/templateFile/word/glossary/styles.xml'
 						  .file 'webSettings.xml', fs.readFileSync __dirname + '/templateFile/word/glossary/webSettings.xml'
 						  .folder('_rels').file 'document.xml.rels', fs.readFileSync __dirname + '/templateFile/word/glossary/_rels/document.xml.rels'
+			
+		
