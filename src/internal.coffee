@@ -32,11 +32,20 @@ module.exports =
 				else width: 12240, height: 15840, orient: 'portrait'
 		,
 			margins: documentOptions.margins
-		if documentOptions.firstPage
-			documentTemplate1(templateData)
+		,
+			titlePg:documentOptions.config.titlePg
+		if documentOptions.config.firstPage
+			if documentOptions.config.titlePg 
+				documentTemplate(templateData)	
+			else
+				documentTemplate1(templateData).replace(/<w:titlePg\/>/,'')
 		else
-			documentTemplate(templateData)	
-
+			documentTemplate(templateData)
+	renderFooter:(documentOptions={})->
+		if documentOptions.config.footer
+			fs.readFileSync __dirname + '/templateFile/word/footer1.xml'
+		else
+			(fs.readFileSync __dirname + '/templateFile/word/footer1.xml','utf-8').replace(/<w:pPr>[\\\s|\\\S]{1,}<\/w:pPr>/g,'')
 	addFiles: (zip, htmlSource, documentOptions) ->
 		zip.file '[Content_Types].xml', fs.readFileSync __dirname + '/templateFile/[Content_Types].xml'
 		zip.folder('_rels').file '.rels', fs.readFileSync __dirname + '/templateFile/_rels/.rels'
@@ -50,10 +59,10 @@ module.exports =
 						  .file 'afchunk1.mht',  utils.getMHTdocument htmlSource[1]
 						  .file 'endnotes.xml', fs.readFileSync __dirname + '/templateFile/word/endnotes.xml'
 						  .file 'fontTable.xml', fs.readFileSync __dirname + '/templateFile/word/fontTable.xml'
-						  .file 'footer1.xml', fs.readFileSync __dirname + '/templateFile/word/footer1.xml'
+						  .file 'footer1.xml', @renderFooter documentOptions
 						  .file 'footnotes.xml', fs.readFileSync __dirname + '/templateFile/word/footnotes.xml'
-						  .file 'header1.xml', fs.readFileSync __dirname + '/templateFile/word/header1.xml'
-						  .file 'settings.xml', fs.readFileSync __dirname + '/templateFile/word/settings.xml'
+						  .file 'header1.xml', (fs.readFileSync __dirname + '/templateFile/word/header1.xml','utf-8').replace(/就在新的世界/g,documentOptions.config.header.text).replace(/w:val="right"/g,'w:val="'+documentOptions.config.header.align+'"')
+						  .file 'settings.xml', (fs.readFileSync __dirname + '/templateFile/word/settings.xml','utf-8').replace(/w:val="true"/g,if documentOptions.config.content then 'w:val="true"' else 'w:val="false"')
 						  .file 'styles.xml', fs.readFileSync __dirname + '/templateFile/word/styles.xml'
 						  .file 'webSetting.xml', fs.readFileSync __dirname + '/templateFile/word/webSettings.xml'
 						  .folder('_rels').file 'document.xml.rels', fs.readFileSync __dirname + '/templateFile/word/_rels/document.xml.rels'

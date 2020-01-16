@@ -71,9 +71,10 @@ function getDocumentConfig(){
     $('<br clear=all style="page-break-before:always" mce_style="page-break-before:always">').insertAfter($('.change-line'))
     var footer = $('#page-footer')
     return {
-        header:header.innerText,
-        footer:footer.innerText,
+        header:{text:header.html()||'',align:header.attr('textAlign')||'right'},
+        footer:footer.length?true:false,
         content:content.length,
-        firstPage:firstPageContent
+        firstPage:firstPageContent,
+        titlePg:$('#first-page').length&&$('#first-page').attr('titlePg')==='true'?true:false
     }
 }
