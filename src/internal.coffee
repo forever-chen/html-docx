@@ -1,5 +1,7 @@
 fs = require 'fs'
 documentTemplate = require './templates/document'
+documentTemplate1 = require './templates/document1'
+
 utils = require './utils'
 _ = merge: require 'lodash.merge'
 
@@ -30,8 +32,10 @@ module.exports =
 				else width: 12240, height: 15840, orient: 'portrait'
 		,
 			margins: documentOptions.margins
-
-		documentTemplate(templateData)
+		if documentOptions.firstPage
+			documentTemplate1(templateData)
+		else
+			documentTemplate(templateData)	
 
 	addFiles: (zip, htmlSource, documentOptions) ->
 		zip.file '[Content_Types].xml', fs.readFileSync __dirname + '/templateFile/[Content_Types].xml'

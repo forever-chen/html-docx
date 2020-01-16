@@ -58,7 +58,7 @@ function convertEchartToImage(exportElement,Id) {
 // 获取文档中word文档配置信息
 function getDocumentConfig(){
     // 处理页眉
-    var header = document.getElementById('page-header')
+    var header = $('#page-header')
     // 处理首页
     var firstPageContent=''
     if($('#first-page').length&&$('#page-content').length){
@@ -66,10 +66,10 @@ function getDocumentConfig(){
         $('#first-page').html('')
     }
     // 处理目录
-    var content = document.getElementById('page-content')
+    var content = $('#page-content')
     // 处理换行
     $('<br clear=all style="page-break-before:always" mce_style="page-break-before:always">').insertAfter($('.change-line'))
-    var footer = document.getElementById('page-footer')
+    var footer = $('#page-footer')
     return {
         header:header.innerText,
         footer:footer.innerText,
