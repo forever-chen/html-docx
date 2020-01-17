@@ -1,74 +1,52 @@
-html-docx-js
+html-docx
 ============
 
-This is a very small library that is capable of converting HTML documents to DOCX format that
-is used by Microsoft Word 2007 and onward. It manages to perform the conversion in the browser by
-using a feature called 'altchunks'. In a nutshell, it allows embedding content in a different markup
-language. We are using MHT document to ship the embedded content to Word as it allows to handle images.
-After Word opens such file, it converts the external content to Word Processing ML (this
-is how the markup language of DOCX files is called) and replaces the reference.
-
-Altchunks were not supported by Microsoft Word for Mac 2008 and are not supported by LibreOffice and
-Google Docs.
+this is a simple library to convert html to docx
 
 Compatibility
--------------
+------------
 
 This library should work on any modern browser that supports `Blobs` (either natively or via
 [Blob.js](https://github.com/eligrey/Blob.js/)). It was tested on Google Chrome 36, Safari 7 and
 Internet Explorer 10.
 
-It also works on Node.js (tested on v0.10.12) using `Buffer` instead of `Blob`.
-
 Images Support
--------------
+------------
 
-This library supports only inlined base64 images (sourced via DATA URI). But it is easy to convert a
-regular image (sourced from static folder) on the fly. If you need an example of such conversion you can [checkout a demo page source](https://github.com/evidenceprime/html-docx-js/blob/master/test/sample.html) (see function `convertImagesToBase64`).
+images/cavans is supported in the library
+the src of images can be DATA URI or inlined base64
+cavans can be generate by common charts library or protogenetic
 
 Usage and demo
---------------
+------------
 
-Very minimal demo is available as `test/sample.html` in the repository and
-[online](http://evidenceprime.github.io/html-docx-js/test/sample.html). Please note that saving
-files on Safari is a little bit convoluted and the only reliable method seems to be falling back
-to a Flash-based approach (such as [Downloadify](https://github.com/dcneiner/Downloadify)).
-Our demo does not include this workaround to keep things simple, so it will not work on Safari at
-this point of time.
+you can use it refer to the example [useage](https://github.com/forever-chen/html-docx/blob/master/test/sample.html)
 
-You can also find a sample for using it in Node.js environment
-[here](https://github.com/evidenceprime/html-docx-js-node-sample).
+API
+------------
+##### `<div id="html-docx-config">`
+* the container is used to set the WORD that you will convert
+##### `<div id="page-header" textAlign='right'>我的新世界</div>` 
+* the element is used to control the header of word
+* the property is used to set the position of the header
+* the innerText of the element is content of the header
+##### `<div id="first-page" titlePg='false'><div style='text-align: center;'>dfsdfsdf</div></div> `
+* the element is used to control the header of first page,if the first titlePage is needless for you ,you can skip the element
+* the property(titlePg) is used to defined the first page whether or not the same
+* you can edite any html element in the element
+#### `<div id="page-content"></div>`
+* the element is used to control the content of word,if you neednot the content,you can skip the element
+#### `<div class="change-line"></div>`
+* if you want to start with a new page, you can used the element
+* you can you use id any time only if you want
+#### `<div id="page-footer"></div>`
+* the element is used to control the header of word
+* it can only be used to disply page number
 
-To generate DOCX, simply pass a HTML document (as string) to `asBlob` method to receive `Blob` (or `Buffer`)
-containing the output file.
+reminder
+-------------
+**all className or Id in element in API cannot be changed**
 
-    var converted = htmlDocx.asBlob(content);
-    saveAs(converted, 'test.docx');
-
-`asBlob` can take additional options for controlling page setup for the document:
-
-* `orientation`: `landscape` or `portrait` (default)
-* `margins`: map of margin sizes (expressed in twentieths of point, see
-  [WordprocessingML documentation](http://officeopenxml.com/WPsectionPgMar.php) for details):
-    - `top`: number (default: 1440, i.e. 2.54 cm)
-    - `right`: number (default: 1440)
-    - `bottom`: number (default: 1440)
-    - `left`: number (default: 1440)
-    - `header`: number (default: 720)
-    - `footer`: number (default: 720)
-    - `gutter`: number (default: 0)
-
-For example:
-
-    var converted = htmlDocx.asBlob(content, {orientation: 'landscape', margins: {top: 720}});
-    saveAs(converted, 'test.docx');
-
-**IMPORTANT**: please pass a complete, valid HTML (including DOCTYPE, `html` and `body` tags).
-This may be less convenient, but gives you possibility of including CSS rules in `style` tags.
-
-`html-docx-js` is distributed as 'standalone' Browserify module (UMD). You can `require` it as
-`html-docx`. If no module loader is available, it will register itself as `window.htmlDocx`.
-See `test/sample.html` for details.
 
 License
 -------
