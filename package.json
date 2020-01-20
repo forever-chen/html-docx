@@ -11,8 +11,9 @@
   "scripts": {
     "test": "gulp test-node",
     "prepublish": "gulp clean && gulp build-node",
-    "release": "gulp clean && gulp clean-release && gulp build && gulp build-node",
-    "min": "gulp minify && gulp copy-release"
+    "release": "gulp clean && gulp clean-release && gulp build && gulp build-node && gulp minify && gulp copy-release",
+    "min": "gulp minify && gulp copy-release",
+    "transport": "gulp clean-publish && gulp transport-file && gulp min-file"
   },
   "browserify": {
     "transform": [

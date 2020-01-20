@@ -45,7 +45,7 @@ API
 
 reminder
 -------------
-**all className or Id in element in API cannot be changed**
+**all classNames or Id of elements in API cannot be changed**
 
 
 License

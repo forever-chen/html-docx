@@ -120,7 +120,34 @@ copyRelease = ->
     outputPath = if fileName.indexOf('html-docx') isnt 0 then './dist/node' else './dist'
     fsExtra.copySync filePath, "#{outputPath}/#{fileName}"
 
+transportFile = ->
+  # del './test/publish'
+  fsExtra.copySync './build/html-docx.min.js', './test/publish/html-docx.min.js'
+  fsExtra.copySync './test/index.js', './test/publish/index.js'
+  fsExtra.copySync './test/sample.html', './test/publish/sample.html'
+
+minFile = ->
+  builtFile = './test/index.js'
+  entry = './test/publish/index.js'
+  dest = './test/publish'
+  fsExtra.copySync builtFile, entry
+  pipeline(
+    gulp.src(entry),
+    uglify(),
+    gulp.dest(dest)
+  )
+deletePublish = (cb) ->
+  del './test/publish', cb
+
+gulp.task 'minify', minify
+
+
 gulp.task 'clean-release', cleanRelease
 gulp.task 'copy-release', copyRelease
+
+gulp.task 'clean-publish', deletePublish
+gulp.task 'min-file', minFile
+gulp.task 'transport-file', transportFile
+
 
 gulp.task 'default', ['test-node', 'test-node-watch']
