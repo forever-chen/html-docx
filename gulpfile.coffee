@@ -124,6 +124,8 @@ transportFile = ->
   # del './test/publish'
   fsExtra.copySync './build/html-docx.min.js', './test/publish/html-docx.min.js'
   fsExtra.copySync './test/index.js', './test/publish/index.js'
+  fsExtra.copySync './test/jquery.js', './test/publish/jquery.js'
+  fsExtra.copySync './test/generate.js', './test/publish/generate.js'
   fsExtra.copySync './test/sample.html', './test/publish/sample.html'
 
 minFile = ->

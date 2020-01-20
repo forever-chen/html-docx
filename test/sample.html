@@ -5,12 +5,12 @@
 	<meta charset="utf-8">
 	<title>HTML-DOCX test</title>
 	<!-- <script src="./vendor/es5-shim.min.js"></script> -->
-	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+	<script src="./jquery.js"></script>
 	<script src="https://cdn.bootcss.com/echarts/4.3.0-rc.1/echarts.min.js"></script>
 	<!-- <script src="http://tinymce.cachefly.net/4.1/tinymce.min.js"></script> -->
 	<!-- <script src="vendor/FileSaver.js"></script> -->
-	<script src="../build/html-docx.min.js"></script>
-	<script src="./index.js"></script>
+	<script src="./html-docx.min.js"></script>
+	<script src="./generate.js"></script>
 </head>
 <style>
 	#main,
@@ -62,18 +62,7 @@
 </style>
 <body>
 	<div id="html-docx">
-		<div id="html-docx-config">
-    <!-- 页眉部分，text值为left/center/right,指示页眉靠左中右 -->
-      <div id="page-header" textAlign='right'>我的新世界</div>
-      <!-- 首页的内容即是该标签的内容，首页相同则titlePg为true，否则为false -->
-      <!-- <div id="first-page" titlePg='false'><div style='text-align: center;'>dfsdfsdf</div></div>  -->
-      <!-- 如果需要目录则加改标签，如果不要则不加 -->
-      <div id="page-content"></div>
-      <!-- 如果需要换行则在换行的位置添加该标签，word会自动跳转到新的页面 -->
-      <!-- <div class="change-line"></div> -->
-      <!-- 页眉部分，text值为left/center/right,指示页眉靠左中右,页脚部分只显示页码 -->
-      <div id="page-footer"></div>
-		</div>
+
 		<h1>第一层</h1>
 		<p>111111111We all live in a yellow submarine, yellow submarine, yellow submarine, yellow submarine</p>
 		<h2>第二层</h2>
@@ -103,51 +92,31 @@
 				<th>序号</th>
 				<th>序号</th>
 				<th>序号</th>
+				<th>序号</th>
+				<th>序号</th>
+				<th>序号</th>
 			</tr>
 			<tr>
 				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
+					<p style="text-align: center;text-indent: 0;">name2222222222222222222222</p>
 				</td>
 				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
+					<p style="text-align: center;text-indent: 0;">name2222222222222222222222</p>
 				</td>
 				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
+					<p style="text-align: center;text-indent: 0;">name2222222222222222222222</p>
+				</td>
+				<td>
+					<p style="text-align: center;text-indent: 0;">name2222222222222222222222</p>
+				</td>
+				<td>
+					<p style="text-align: center;text-indent: 0;">name2222222222222222222222</p>
+				</td>
+				<td>
+					<p style="text-align: center;text-indent: 0;">name2222222222222222222222</p>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-				<td>
-					<p style="text-align: center;text-indent: 0;">name</p>
-				</td>
-			</tr>
+
 		</table>
 	</div>
 	<button id="convert">Convert</button>
@@ -187,23 +156,23 @@
 
 	</script>
 	<script>
-    // 这段代码用来处理style标签的样式
+		// 这段代码用来处理style标签的样式
 		let arr = []
 		let element = document.getElementsByClassName('style')
 		if (element.length) {
 			for (var i = 0; i < element.length; i++) {
-				arr.push(element[i].innerText.replace(/\s/g,''))
+				arr.push(element[i].innerText.replace(/\s{2,}/g,''))
 			}
-    }
-    // 转换事件
+		}
+		// 转换事件
 		$('#convert').click(function () {
-			exportFile({
+			HtmlToDocx({
 				exportElement: '#html-docx', // 需要转换为word的html标签
 				exportFileName: 'list.docx', // 转换之后word文档的文件名称
-				StringStyle: arr.join(''), // html标签的样式以字符窜的形式插入进去
+				StringStyle: arr.join(''), // css样式以字符窜的形式插入进去
 				margins:{top: 1440,right: 1440,bottom: 1440,left: 1440,header: 720,footer: 720,gutter: 0} // word的边距配置
 			})
-			})
+		})
 	</script>
 </body>
 

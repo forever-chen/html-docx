@@ -1,6 +1,4 @@
 (function(){
-	var $ = require('./jquery')
-	var htmlDocx = require('./html-docx.min.js')
     // 导出文件
     if(typeof $==='undefined'){
         console.error('please require the jquery')

@@ -1,7 +1,24 @@
 html-docx
 ============
 
-this is a simple library to convert html to docx
+this is a simple library to convert html to docx,it is based on the [html-doxc-js](https://github.com/evidenceprime/html-docx-js)
+
+useage
+-------------
+#### Usage and demo
+```
+yarn add html-docx   npm install html-docx --save
+
+import HtmlToDocx from 'html-docx'
+HtmlDocx({
+    exportElement: '#html-docx', // 需要转换为word的html标签
+    exportFileName: 'list.docx', // 转换之后word文档的文件名称
+    StringStyle: '', // css样式以字符串的形式插入进去
+    margins:{top: 1440,right: 1440,bottom: 1440,left: 1440,header: 720,footer: 720,gutter: 0} // word的边距配置
+})
+```
+#### use in-inline in html
+[you can use it refer to the example useage](https://github.com/forever-chen/html-docx/blob/master/test/sample.html)
 
 Compatibility
 ------------
@@ -14,13 +31,9 @@ Images Support
 ------------
 
 images/cavans is supported in the library
-the src of images can be DATA URI or inlined base64
+the src of images can be URI or inlined base64
 cavans can be generate by common charts library or protogenetic
 
-Usage and demo
-------------
-
-you can use it refer to the example [useage](https://github.com/forever-chen/html-docx/blob/master/test/sample.html)
 
 API
 ------------
@@ -46,7 +59,7 @@ API
 reminder
 -------------
 **all classNames or Id of elements in API cannot be changed**
-
+**you had better use protogenetic element in html so that the word can convert accurately**
 
 License
 -------
