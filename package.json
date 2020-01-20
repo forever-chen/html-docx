@@ -13,7 +13,7 @@
     "prepublish": "gulp clean && gulp build-node",
     "release": "gulp clean && gulp clean-release && gulp build && gulp build-node && gulp minify && gulp copy-release",
     "min": "gulp minify && gulp copy-release",
-    "transport": "gulp clean-publish && gulp transport-file && gulp min-file"
+    "transport": "gulp clean-publish && gulp transport-file"
   },
   "browserify": {
     "transform": [

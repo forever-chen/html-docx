@@ -62,7 +62,19 @@
 </style>
 <body>
 	<div id="html-docx">
-
+		<div id="html-docx-config">
+			<!-- 页眉部分，text值为left/center/right,指示页眉靠左中右 -->
+			  <div id="page-header" textAlign='right'>我的新世界</div>
+			  <!-- 首页的内容即是该标签的内容，首页相同则titlePg为true，否则为false -->
+			  <!-- <div id="first-page" titlePg='false'><div style='text-align: center;'>dfsdfsdf</div></div>  -->
+			  <!-- 如果需要目录则加改标签，如果不要则不加 -->
+			  <div id="page-content"></div>
+			  <!-- 如果需要换行则在换行的位置添加该标签，word会自动跳转到新的页面 -->
+			  <div class="change-line"></div>
+			  <!-- 页眉部分，text值为left/center/right,指示页眉靠左中右,页脚部分只显示页码 -->
+			  <div id="page-footer">
+				  
+		</div>
 		<h1>第一层</h1>
 		<p>111111111We all live in a yellow submarine, yellow submarine, yellow submarine, yellow submarine</p>
 		<h2>第二层</h2>
