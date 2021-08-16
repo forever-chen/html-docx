@@ -17,15 +17,15 @@ module.exports = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '------=mhtDocumentPart\r\nContent-Type: ' +
+__p += '------=mhtDocumentPart\nContent-Type: ' +
 ((__t = ( contentType )) == null ? '' : __t) +
-'\r\nContent-Transfer-Encoding: ' +
+'\nContent-Transfer-Encoding: ' +
 ((__t = ( contentEncoding )) == null ? '' : __t) +
-'\r\nContent-Location: ' +
+'\nContent-Location: ' +
 ((__t = ( contentLocation )) == null ? '' : __t) +
-'\r\n\r\n' +
+'\n\n' +
 ((__t = ( encodedContent )) == null ? '' : __t) +
-'\r\n';
+'\n';
 
 }
 return __p

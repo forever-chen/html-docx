@@ -84,12 +84,12 @@ buildNode = (compileCoffee = true) ->
   logger.start()
   gulp.src('src/**/*', base: 'src').pipe(gulp.dest('build'))
   gulp.src('src/templates/*.tpl').pipe(template commonjs: true).pipe(gulp.dest('build/templates'))
+  
   if compileCoffee
     gulp.src('src/**/*.coffee').pipe(coffee bare: true)
       .on('error', handleErrors).on('end', logger.end).pipe(gulp.dest('build'))
   else
     logger.end()
-
 gulp.task 'build-node', buildNode
 gulp.task 'test-node', (growl = false) ->
   buildNode(false)
@@ -123,8 +123,6 @@ copyRelease = ->
 transportFile = ->
   # del './test/publish'
   fsExtra.copySync './build/html-docx.min.js', './test/publish/html-docx.min.js'
-  fsExtra.copySync './test/index.js', './test/publish/index.js'
-  fsExtra.copySync './test/jquery.js', './test/publish/jquery.js'
   fsExtra.copySync './test/generate.js', './test/publish/generate.js'
   fsExtra.copySync './test/sample.html', './test/publish/sample.html'
 

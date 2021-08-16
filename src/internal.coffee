@@ -61,11 +61,12 @@ module.exports =
 						  .file 'fontTable.xml', fs.readFileSync __dirname + '/templateFile/word/fontTable.xml'
 						  .file 'footer1.xml', @renderFooter documentOptions
 						  .file 'footnotes.xml', fs.readFileSync __dirname + '/templateFile/word/footnotes.xml'
-						  .file 'header1.xml', (fs.readFileSync __dirname + '/templateFile/word/header1.xml','utf-8').replace(/就在新的世界/g,documentOptions.config.header.text).replace(/w:val="right"/g,'w:val="'+documentOptions.config.header.align+'"')
 						  .file 'settings.xml', (fs.readFileSync __dirname + '/templateFile/word/settings.xml','utf-8').replace(/w:val="true"/g,if documentOptions.config.content then 'w:val="true"' else 'w:val="false"')
 						  .file 'styles.xml', fs.readFileSync __dirname + '/templateFile/word/styles.xml'
 						  .file 'webSetting.xml', fs.readFileSync __dirname + '/templateFile/word/webSettings.xml'
 						  .folder('_rels').file 'document.xml.rels', fs.readFileSync __dirname + '/templateFile/word/_rels/document.xml.rels'
+		if documentOptions.config.header.text
+			zip.folder('word').file 'header1.xml', (fs.readFileSync __dirname + '/templateFile/word/header1.xml','utf-8').replace(/就在新的世界/g,documentOptions.config.header.text).replace(/w:val="right"/g,'w:val="'+documentOptions.config.header.align+'"')
 		zip.folder('word').folder('theme').file 'theme1.xml', fs.readFileSync __dirname + '/templateFile/word/theme/theme1.xml'
 		zip.folder('word').folder('glossary').file 'document.xml', fs.readFileSync __dirname + '/templateFile/word/glossary/document.xml'
 						  .file 'fontTable.xml', fs.readFileSync __dirname + '/templateFile/word/glossary/fontTable.xml'

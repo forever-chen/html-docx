@@ -17,11 +17,11 @@ module.exports = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += 'MIME-Version: 1.0\r\nContent-Type: multipart/related;\r\n    type="text/html";\r\n    boundary="----=mhtDocumentPart"\r\n\r\n\r\n------=mhtDocumentPart\r\nContent-Type: text/html;\r\n    charset="utf-8"\r\nContent-Transfer-Encoding: quoted-printable\r\nContent-Location: file:///C:/fake/document.html\r\n\r\n' +
+__p += 'MIME-Version: 1.0\nContent-Type: multipart/related;\n    type="text/html";\n    boundary="----=mhtDocumentPart"\n\n\n------=mhtDocumentPart\nContent-Type: text/html;\n    charset="utf-8"\nContent-Transfer-Encoding: quoted-printable\nContent-Location: file:///C:/fake/document.html\n\n' +
 ((__t = ( htmlSource )) == null ? '' : __t) +
-'\r\n\r\n' +
+'\n\n' +
 ((__t = ( contentParts )) == null ? '' : __t) +
-'\r\n\r\n------=mhtDocumentPart--\r\n';
+'\n\n------=mhtDocumentPart--\n';
 
 }
 return __p
