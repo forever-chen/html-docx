@@ -123,12 +123,11 @@ copyRelease = ->
 transportFile = ->
   # del './test/publish'
   fsExtra.copySync './build/html-docx.min.js', './test/publish/html-docx.min.js'
-  fsExtra.copySync './test/generate.js', './test/publish/generate.js'
   fsExtra.copySync './test/sample.html', './test/publish/sample.html'
 
 minFile = ->
-  builtFile = './test/index.js'
-  entry = './test/publish/index.js'
+  builtFile = './test/generate.js'
+  entry = './test/publish/generate.js'
   dest = './test/publish'
   fsExtra.copySync builtFile, entry
   pipeline(

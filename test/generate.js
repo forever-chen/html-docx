@@ -103,7 +103,6 @@
         var content = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head></head><style>" + (StringStyle ? StringStyle.replace(/(\s{2,}|\n)/g, '') : '') + "</style><body>" + $(Id).innerHTML.replace(/\s{2,}/g, '') + "</body></html>";
         var fileParam = fileParams || {}
         var htmlContent = [content, config.firstPage]
-        console.log(config)
         var converted = htmlDocx.asBlob(htmlContent, {
             margins: fileParam.margins,
             config: config
@@ -112,6 +111,7 @@
         if (config.firstPage) {
             $('#html-docx-config').innerHTML = fistPageContent
         }
+        document.getElementById('temporaryExportElement').remove()
     }
     // 把图片转为base64
     function convertImagesToBase64() {
